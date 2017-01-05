@@ -1,6 +1,6 @@
 #ionic2开发的简易客户端
 ##效果预览
-![image](http://github.com/zhmlvft/ng2-news/raw/master/screenshots/ng2-news.gif)
+![image](https://raw.githubusercontent.com/zhmlvft/ng2-news/master/screenshots/ng2-news.gif)
 ##启动步骤
 ###服务端启动
 参考[news-demo](http://github.com/zhmlvft/news-demo)
