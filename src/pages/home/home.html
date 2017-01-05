@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <ion-title style="text-align: center;">首页</ion-title>
+  </ion-navbar>
+  <channelSlide #channelSlide (slideClick)="onSlideClick($event)" [slides]="pageSlides" [pageNumber]="5" ></channelSlide>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" [enabled]="isAtTop" *ngIf="isAtTop">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="circles"
+      refreshingText="刷新完成...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-slides [options]="contentSlideOptions" (ionDidChange)="onSlideChanged()" (ionDrag)="disableRefresh($event)" #contentSlide>
+    <ion-slide *ngFor="let ntype of newsType" (scroll)="onPageScroll($event)">
+      <ion-list>
+        <ion-item  *ngFor="let news of newsContents[ntype.channelId]" (click)="loadNewsDetail(news.id,news.title,news.link)">
+          <ion-thumbnail item-left>
+            <img src="{{news.picUrl}}">
+          </ion-thumbnail>
+          <h2>{{news.title}}</h2>
+          <p>{{news.pubDate}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="hasMore">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载数据..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

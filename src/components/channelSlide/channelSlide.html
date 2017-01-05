@@ -1,0 +1,7 @@
+<ion-slides #channelSlide class="slide-title" [options]="channelSlideOptions">
+  <ion-slide *ngFor="let slide of newsTypes; let i = index;">
+    <div (click)="onClick(i)">
+      <span class="slide-title-unit" [ngClass]="{'slide-title-active': selectedIndex == i}">{{slide.name}}</span>
+    </div>
+  </ion-slide>
+</ion-slides>
